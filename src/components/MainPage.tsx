@@ -36,6 +36,8 @@ const MainPage: FC = () => {
       setBattleFeed(clearBattleResponse)
   }
 
+  console.log(battleFeed)
+
   return (
     <Fragment>
         {hasGameStarter ? (
