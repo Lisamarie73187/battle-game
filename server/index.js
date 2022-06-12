@@ -1,10 +1,14 @@
 const express = require('express')
 const app = express()
 const port = 3001
+const bodyParser = require ('body-parser');
 const cors = require ('cors');
+
+
 app.use(cors());
+app.use(bodyParser.json());
 
-
+let battleFeed = []
 
 const items = [
     {
@@ -128,6 +132,16 @@ app.get('/api', (req, res) => {
   const randomNumber = getRandomInt(0,items.length - 1)
   res.send(items[randomNumber])
 })
+
+app.post('/battle', (req, res) => {
+    battleFeed.push(req.body.payload)
+    res.send(battleFeed)
+});
+
+app.get('/startNewGame', (req, res) => {
+  battleFeed = []
+  res.send(battleFeed)
+});
 
 
 app.listen(port, () => {

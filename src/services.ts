@@ -2,6 +2,8 @@ import axios, { AxiosResponse } from 'axios'
 import characterImages from './assets/images'
 import { IKillFeed } from './types/IKillFeed'
 
+const port = 'http://localhost:3001'
+
 const retry = async(fn: () => Promise<AxiosResponse>, retryTimes: number) => {
 
     try {
@@ -39,13 +41,12 @@ const mapKillFeedData = (data: IKillFeed) => {
 }
 
 export const getKillFeed = async() =>  {
+  try {
     const retryTimes = 5
     const getFeed = async() => {
         // return await axios.get('http://interview.wptdev.com/api/killfeed')
-        return await axios.get('http://localhost:3001/api')
+        return await axios.get(`${port}/api`)
     }
-  try {
-
     return retry(getFeed, retryTimes)
 
   } catch (error) {
@@ -53,6 +54,29 @@ export const getKillFeed = async() =>  {
     return 'An unexpected error occurred';
   }
 }
+
+export const battlePlayer = async( payload ) =>  {
+  try {
+    const battleResponse =  await axios.post(`${port}/battle`, {payload})
+    return battleResponse.data
+
+  } catch (error) {
+    console.log('unexpected error: ', error);
+    return 'An unexpected error occurred';
+  }
+}
+
+export const startNewGame = async() =>  {
+  try {
+    const response = await axios.get(`${port}/startNewGame`)
+    return response.data
+
+  } catch (error) {
+    console.log('unexpected error: ', error);
+    return 'An unexpected error occurred';
+  }
+}
+
 
 
 

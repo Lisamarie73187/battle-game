@@ -1,11 +1,13 @@
-import React, { FC, useState, Fragment } from 'react';
-import { getKillFeed } from '../services';
+import React, { FC, useState, Fragment, useMemo } from 'react';
+import { battlePlayer, getKillFeed, startNewGame } from '../services';
+import { IBattleFeed } from '../types/IBattleFeed';
 import { IKillFeed } from '../types/IKillFeed';
 import Character from './Character';
 
 const MainPage: FC = () => {
     const [hasGameStarter, setHasGameStarted] = useState(false)
     const [killFeed, setKillFeed ] = useState<IKillFeed | null>(null)
+    const [battleFeed, setBattleFeed] = useState<IBattleFeed[] | []>([])
   
 
   const getFeed = async() => {
@@ -16,6 +18,22 @@ const MainPage: FC = () => {
   const startGame = () => {
       setHasGameStarted(true)
       getFeed()
+  }
+
+  const battle = async() => {
+      const battleResp = await battlePlayer(
+          {
+            damage: killFeed?.damage, 
+            method: killFeed?.method,
+            targetPlayer: killFeed?.target_player_id,
+            targetCharacter: killFeed?.target_character
+        })
+      setBattleFeed(battleResp)
+  }
+
+  const clearBattle = async() => {
+      const clearBattleResponse = await startNewGame()
+      setBattleFeed(clearBattleResponse)
   }
 
   return (
@@ -38,13 +56,13 @@ const MainPage: FC = () => {
                     </div>
                     <div>
                         <div className='battleButtonWrapper'>
-                            <button>Battle</button>
+                            <button onClick={battle}>Battle</button>
                         </div>
                         <div className='battleAgainButtonWrapper'>
                             <button onClick={getFeed}>Battle Again</button>
                         </div>
                         <div className='battleAgainButtonWrapper'>
-                            <button onClick={getFeed}>Start New Game</button>
+                            <button onClick={clearBattle}>Start New Game</button>
                         </div>
                     </div>
                 </div>
