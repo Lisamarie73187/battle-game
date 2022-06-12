@@ -1,4 +1,4 @@
-import React, { FC, useState, Fragment, useMemo } from 'react';
+import React, { FC, useState, Fragment } from 'react';
 import { battlePlayer, getKillFeed, startNewGame } from '../services';
 import { IBattleFeed } from '../types/IBattleFeed';
 import { IKillFeed } from '../types/IKillFeed';
