@@ -51,10 +51,58 @@ const items = [
         "reason": "OK",
         "payload": [
           {
+            "platform": "pc",
+            "region": "2",
+            "source_player_id": "FalconPunch#133",
+            "source_character": "Zenyatta",
+            "target_player_id": "DietCokeIsEvil#321",
+            "target_character": "Mei",
+            "method": "Primal Rage",
+            "damage": 82
+          }
+        ]
+      },
+      {
+        "status": "successful",
+        "reason": "OK",
+        "payload": [
+          {
             "platform": "test",
             "region": "3",
             "source_player_id": "DietCokeIsEvil#321",
             "source_character": "Mei",
+            "target_player_id": "Jimmy#222",
+            "target_character": "Zenyatta",
+            "method": "Cryo-Freeze",
+            "damage": 25
+          }
+        ]
+      },
+      {
+        "status": "successful",
+        "reason": "OK",
+        "payload": [
+          {
+            "platform": "test",
+            "region": "3",
+            "source_player_id": "DietCokeIsEvil#321",
+            "source_character": "Winston",
+            "target_player_id": "Jimmy#222",
+            "target_character": "Winston",
+            "method": "Cryo-Freeze",
+            "damage": 25
+          }
+        ]
+      },
+      {
+        "status": "successful",
+        "reason": "OK",
+        "payload": [
+          {
+            "platform": "test",
+            "region": "3",
+            "source_player_id": "DietCokeIsEvil#321",
+            "source_character": "Zenyatta",
             "target_player_id": "Jimmy#222",
             "target_character": "Zenyatta",
             "method": "Cryo-Freeze",
@@ -77,7 +125,7 @@ function getRandomInt(min, max) {
 }
 
 app.get('/api', (req, res) => {
-  const randomNumber = getRandomInt(0,4)
+  const randomNumber = getRandomInt(0,items.length - 1)
   res.send(items[randomNumber])
 })
 
