@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { IBattleFeed } from '../types/IBattleFeed';
 import HealthBar from './HealthBar';
 
 interface ICharacterProps {
@@ -6,14 +7,15 @@ interface ICharacterProps {
     character: string
     region?: string
     image: string
+    battleFeed?: IBattleFeed[]
 }
 
-const Character: FC<ICharacterProps> = ({player, character, image}) => {
-
-
+const Character: FC<ICharacterProps> = ({player, character, image, battleFeed}) => {
+  const characterDamage = battleFeed?.find(battle => battle.targetCharacter === character)
+  console.log({characterDamage})
   return (
     <div>
-        <HealthBar/>
+        <HealthBar damage={characterDamage?.damage}/>
         <img 
           src={image} 
           alt={character}

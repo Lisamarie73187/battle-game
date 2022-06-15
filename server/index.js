@@ -4,7 +4,6 @@ const port = 3001
 const bodyParser = require ('body-parser');
 const cors = require ('cors');
 
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -109,7 +108,7 @@ const items = [
             "source_character": "Zenyatta",
             "target_player_id": "Jimmy#222",
             "target_character": "Zenyatta",
-            "method": "Cryo-Freeze",
+            "method": "TEst",
             "damage": 25
           }
         ]
@@ -128,6 +127,20 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function consalidateBattleFeed(battleArr) {
+  var newArray = [];
+    battleArr.forEach(item => {
+     var newItem = {targetCharacter: item.targetCharacter, damage: 0};
+     battleArr.forEach(innerItem => {
+        if(innerItem.targetCharacter === item.targetCharacter){
+            newItem.damage = newItem.damage + innerItem.damage;
+        }
+     });
+    newArray.push(newItem);
+  });
+    return newArray.filter((v,i,a)=>a.findIndex(t=>(t.targetCharacter===v.targetCharacter))===i)
+}
+
 app.get('/api', (req, res) => {
   const randomNumber = getRandomInt(0,items.length - 1)
   res.send(items[randomNumber])
@@ -135,6 +148,7 @@ app.get('/api', (req, res) => {
 
 app.post('/battle', (req, res) => {
     battleFeed.push(req.body.payload)
+    battleFeed = consalidateBattleFeed(battleFeed)
     res.send(battleFeed)
 });
 

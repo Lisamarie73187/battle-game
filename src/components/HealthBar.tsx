@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 interface IHealthBarProps {
     damage?: number
@@ -6,19 +6,28 @@ interface IHealthBarProps {
 }
 
 const HealthBar: FC<IHealthBarProps> = ({damage, method}) => {
+  const [characterDead, setCharacterDead] = useState(false)
 
     const calculateWidth = () => {
+      let percent = 100
+      if(damage){
+        percent = 100 - damage
+      }
         return {
-            width: '100%'
+            width: `${percent}%`
         }
     }
 
 
   return (
-    <div className='healthBarWrapper'>
-        <h4>Health</h4>
+       <div>
+              <h4>Health</h4>
+              <div className='healthBarWrapper'>
        <div style={calculateWidth()}/>
     </div>
+
+    </div>
+    
   );
 }
 

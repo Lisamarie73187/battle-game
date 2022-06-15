@@ -34,6 +34,7 @@ const MainPage: FC = () => {
   const clearBattle = async() => {
       const clearBattleResponse = await startNewGame()
       setBattleFeed(clearBattleResponse)
+      setHasGameStarted(false)
   }
 
   console.log(battleFeed)
@@ -49,11 +50,13 @@ const MainPage: FC = () => {
                             player={killFeed.source_player_id}
                             character={killFeed.source_character}
                             image={killFeed.source_character_image}
+                            battleFeed={battleFeed}
                         />
                          <Character 
                             player={killFeed.target_player_id}
                             character={killFeed.target_character}
                             image={killFeed.target_character_image}
+                            battleFeed={battleFeed}
                         />
                     </div>
                     <div>
