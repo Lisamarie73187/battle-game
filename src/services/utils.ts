@@ -1,7 +1,7 @@
 import characterImages from '../assets/images'
-import { IKillFeed } from '../types/IKillFeed'
+import { IKillFeed, IKillFeedWithImages } from '../types/IKillFeed'
 
-export const mapKillFeedData = (data: IKillFeed) => {
+export const mapKillFeedData = (data: IKillFeed): IKillFeedWithImages => {
     const sourceCharacterImage = characterImages.find(character => character.name === data.source_character)
     const targetCharacterImage = characterImages.find(character => character.name === data.target_character)
 
@@ -10,10 +10,10 @@ export const mapKillFeedData = (data: IKillFeed) => {
         region: data?.region,
         source_player_id: data?.source_player_id,
         source_character: data?.source_character,
-        source_character_image: sourceCharacterImage?.imgURL,
+        source_character_image: sourceCharacterImage?.imgURL || ' ',
         target_player_id: data?.target_player_id,
         target_character: data?.target_character,
-        target_character_image: targetCharacterImage?.imgURL,  
+        target_character_image: targetCharacterImage?.imgURL || ' ',  
         method: data?.method,
         damage: data?.damage
     }

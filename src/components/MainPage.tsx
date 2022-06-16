@@ -1,15 +1,13 @@
 import React, { useState, Fragment } from 'react';
 import { getKillFeed } from '../services/services';
-import { IKillFeed } from '../types/IKillFeed';
+import { IKillFeed, IKillFeedWithImages } from '../types/IKillFeed';
 import Character from './Character';
 import Modal from './Modal';
 
 const MainPage: React.FC = () => {
     const [hasGameStarter, setHasGameStarted] = useState(false)
-    const [killFeed, setKillFeed ] = useState<IKillFeed | null>(null)
+    const [killFeed, setKillFeed ] = useState<IKillFeedWithImages | null>(null)
     const [isBattleModalShowing, setIsBattleModalShowing] = useState(false)
-
-  
 
   const getFeed = async() => {
     const resp = await getKillFeed()
@@ -30,7 +28,7 @@ const MainPage: React.FC = () => {
     <Fragment>
         {hasGameStarter ? (
             <div>
-                {killFeed &&
+                {!!killFeed &&
                     <div>
                         <div className='battleFieldWrapper'>
                             <Character 

@@ -3,7 +3,7 @@ import HealthBar from './HealthBar';
 
 interface ICharacterProps {
     player: string
-    character: string
+    character: string 
     region?: string
     image: string
 }

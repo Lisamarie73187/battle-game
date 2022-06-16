@@ -5,11 +5,12 @@ interface IHealthBarProps {
     method?: string
 }
 
-const HealthBar: React.FC<IHealthBarProps> = ({damage, method}) => {
+const HealthBar: React.FC<IHealthBarProps> = ({damage = 50, method = 'primal rage'}) => {
 
     const calculateWidth = () => {
+      const percent = 100 - damage
         return {
-            width: '30vw'
+            width: `${percent}`
         }
     }
 

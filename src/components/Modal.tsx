@@ -9,7 +9,6 @@ interface IModalProps {
 
 const Modal: React.FC<IModalProps> = ({isOpen, close, title, children}) => {
 
-
     if (isOpen) {
         return (
             <div className='modalWrapper'>

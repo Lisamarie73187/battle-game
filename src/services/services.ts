@@ -1,8 +1,13 @@
 import axios, { AxiosResponse } from 'axios'
+import { IKillFeedResponse } from '../types/IKillFeed'
 import { mapKillFeedData } from './utils'
 
+const api = {
+    localHost: 'http://localhost:3001/api',
+    webPt: 'http://interview.wptdev.com/api/killfeed'
+}     
 
-const retry = async(fn: () => Promise<AxiosResponse>, retryTimes: number) => {
+const retry = async(fn: () => Promise<AxiosResponse<IKillFeedResponse>>, retryTimes: number) => {
 
     try {
         const { data } = await fn()
@@ -23,8 +28,7 @@ const retry = async(fn: () => Promise<AxiosResponse>, retryTimes: number) => {
 export const getKillFeed = async() =>  {
     const retryTimes = 5
     const getFeed = async() => {
-        // return await axios.get('http://interview.wptdev.com/api/killfeed')
-        return await axios.get('http://localhost:3001/api')
+        return await axios.get(api.localHost)
     }
   try {
 

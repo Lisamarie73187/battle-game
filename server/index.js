@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3001
-const cors = require ('cors');
+const cors = require ('cors')
 app.use(cors());
 
 
@@ -21,7 +21,7 @@ const items = [
           {
             "platform": "pc",
             "region": "1",
-            "source_player_id": "Jimmy#222",
+            "source_player_id": "Lisa#333",
             "source_character": "Mei",
             "target_player_id": "DietCokeIsEvil#321",
             "target_character": "Mei",
