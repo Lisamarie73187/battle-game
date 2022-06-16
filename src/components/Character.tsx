@@ -13,11 +13,11 @@ const Character: FC<ICharacterProps> = ({player, character, image}) => {
 
   return (
     <div>
-        <HealthBar/>
         <img 
           src={image} 
           alt={character}
         />
+        <HealthBar/>
         <div className='playerInfoBoxWrapper'>
           <h3><span>PlayerId:</span> {player}</h3>
           <h3><span>Characeter:</span> {character}</h3>

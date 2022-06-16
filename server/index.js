@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
+const bodyParser = require ('body-parser');
+
+app.use(bodyParser.json());
 const port = 3001
 const cors = require ('cors');
 app.use(cors());
-
-
 
 const items = [
     {
@@ -26,7 +27,7 @@ const items = [
             "target_player_id": "DietCokeIsEvil#321",
             "target_character": "Mei",
             "method": "Cryo-Freeze",
-            "damage": 13
+            "damage": 1
           }
         ]
       },
@@ -42,7 +43,7 @@ const items = [
             "target_player_id": "DietCokeIsEvil#321",
             "target_character": "Mei",
             "method": "Primal Rage",
-            "damage": 82
+            "damage": 2
           }
         ]
       },
@@ -58,7 +59,7 @@ const items = [
             "target_player_id": "DietCokeIsEvil#321",
             "target_character": "Mei",
             "method": "Primal Rage",
-            "damage": 82
+            "damage": 3
           }
         ]
       },
@@ -74,7 +75,7 @@ const items = [
             "target_player_id": "Jimmy#222",
             "target_character": "Zenyatta",
             "method": "Cryo-Freeze",
-            "damage": 25
+            "damage": 4
           }
         ]
       },
@@ -90,7 +91,7 @@ const items = [
             "target_player_id": "Jimmy#222",
             "target_character": "Winston",
             "method": "Cryo-Freeze",
-            "damage": 25
+            "damage": 5
           }
         ]
       },
@@ -106,7 +107,7 @@ const items = [
             "target_player_id": "Jimmy#222",
             "target_character": "Zenyatta",
             "method": "Cryo-Freeze",
-            "damage": 25
+            "damage": 6
           }
         ]
       },
@@ -117,17 +118,17 @@ const items = [
 ]
 
 
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-app.get('/api', (req, res) => {
+app.get('/getKillFeed', (req, res) => {
   const randomNumber = getRandomInt(0,items.length - 1)
   res.send(items[randomNumber])
 })
+
 
 
 app.listen(port, () => {

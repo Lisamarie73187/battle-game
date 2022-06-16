@@ -9,7 +9,7 @@ const HealthBar: FC<IHealthBarProps> = ({damage, method}) => {
 
     const calculateWidth = () => {
         return {
-            width: '100%'
+            width: '300px'
         }
     }
 

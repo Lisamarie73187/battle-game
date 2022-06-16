@@ -16,3 +16,8 @@ export interface IKillFeedResponse {
     method: string
     damage: number
   }
+
+  export interface IKillFeedMappedResponse {
+    killFeedResponse: IKillFeed
+    killFeedResponseArr: IKillFeed[]
+  }
