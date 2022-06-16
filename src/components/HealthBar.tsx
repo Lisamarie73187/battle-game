@@ -1,15 +1,15 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 
 interface IHealthBarProps {
     damage?: number
     method?: string
 }
 
-const HealthBar: FC<IHealthBarProps> = ({damage, method}) => {
+const HealthBar: React.FC<IHealthBarProps> = ({damage, method}) => {
 
     const calculateWidth = () => {
         return {
-            width: '100%'
+            width: '30vw'
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React  from 'react';
 import HealthBar from './HealthBar';
 
 interface ICharacterProps {
@@ -8,7 +8,7 @@ interface ICharacterProps {
     image: string
 }
 
-const Character: FC<ICharacterProps> = ({player, character, image}) => {
+const Character: React.FC<ICharacterProps> = ({player, character, image}) => {
 
 
   return (
